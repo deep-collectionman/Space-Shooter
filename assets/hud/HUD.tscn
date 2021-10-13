@@ -1,0 +1,104 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/hud/music/Game Over.ogg" type="AudioStream" id=1]
+[ext_resource path="res://assets/hud/fonts/standard_style.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/hud/fonts/header_style.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/hud/HUD.gd" type="Script" id=4]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource( 4 )
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+
+[node name="ScoreContainer" type="MarginContainer" parent="."]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScoreContainer"]
+margin_right = 58.0
+margin_bottom = 15.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ScoreContainer/HBoxContainer"]
+margin_right = 44.0
+margin_bottom = 15.0
+custom_fonts/font = ExtResource( 2 )
+text = "Score"
+
+[node name="Score" type="Label" parent="ScoreContainer/HBoxContainer"]
+margin_left = 48.0
+margin_right = 58.0
+margin_bottom = 15.0
+custom_fonts/font = ExtResource( 2 )
+text = "0"
+
+[node name="GameOverContainer" type="VBoxContainer" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 4.0
+margin_top = -20.0
+margin_right = -4.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GameOverContainer"]
+margin_right = 136.0
+margin_bottom = 23.0
+custom_fonts/font = ExtResource( 3 )
+text = "Game Over"
+
+[node name="Buttons" type="HBoxContainer" parent="GameOverContainer"]
+margin_top = 27.0
+margin_right = 136.0
+margin_bottom = 48.0
+
+[node name="Restart" type="Button" parent="GameOverContainer/Buttons"]
+margin_right = 71.0
+margin_bottom = 21.0
+custom_fonts/font = ExtResource( 2 )
+text = "Restart"
+flat = true
+
+[node name="Menu" type="Button" parent="GameOverContainer/Buttons"]
+margin_left = 75.0
+margin_right = 129.0
+margin_bottom = 21.0
+custom_fonts/font = ExtResource( 2 )
+text = "Menu"
+flat = true
+
+[node name="Control" type="Node" parent="."]
+
+[node name="Action" type="TouchScreenButton" parent="Control"]
+action = "ui_accept"
+visibility_mode = 1
+
+[node name="Direction" type="Node" parent="Control"]
+
+[node name="Up" type="TouchScreenButton" parent="Control/Direction"]
+action = "ui_up"
+visibility_mode = 1
+
+[node name="Down" type="TouchScreenButton" parent="Control/Direction"]
+action = "ui_down"
+visibility_mode = 1
+
+[node name="Right" type="TouchScreenButton" parent="Control/Direction"]
+action = "ui_right"
+visibility_mode = 1
+
+[node name="Left" type="TouchScreenButton" parent="Control/Direction"]
+action = "ui_left"
+
+[connection signal="pressed" from="GameOverContainer/Buttons/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="GameOverContainer/Buttons/Menu" to="." method="_on_Menu_pressed"]

@@ -1,0 +1,30 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/enemy/sounds/Explosion.ogg" type="AudioStream" id=1]
+[ext_resource path="res://assets/enemy/sprites/explosion-1.png" type="Texture" id=2]
+[ext_resource path="res://assets/enemy/sprites/explosion-3.png" type="Texture" id=3]
+[ext_resource path="res://assets/enemy/sprites/explosion-2.png" type="Texture" id=4]
+[ext_resource path="res://assets/enemy/sprites/explosion-4.png" type="Texture" id=5]
+[ext_resource path="res://assets/enemy/sprites/explosion-5.png" type="Texture" id=6]
+[ext_resource path="res://assets/enemy/Explosion.gd" type="Script" id=7]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "Explosion",
+"speed": 5.0
+} ]
+
+[node name="Explosion" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "Explosion"
+frame = 4
+
+[node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+
+[connection signal="finished" from="ExplosionSound" to="." method="_on_ExplosionSound_finished"]
